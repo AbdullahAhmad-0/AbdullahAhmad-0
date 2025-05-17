@@ -1,68 +1,95 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Neon Border Effects */
+.border-neon-green {
+  border-color: #39ff14;
+  box-shadow: 
+      0 0 5px #39ff14,
+      0 0 10px #39ff14;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.border-neon-green-lg {
+  border-color: #39ff14;
+  box-shadow: 
+      0 0 5px #39ff14,
+      0 0 10px #39ff14,
+      0 0 20px #39ff14,
+      0 0 40px #39ff14;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.border-neon-blue {
+  border-color: #00ffff;
+  box-shadow: 
+      0 0 5px #00ffff,
+      0 0 10px #00ffff;
+}
+.border-neon-blue-lg {
+  border-color: #00ffff;
+  box-shadow: 
+      0 0 5px #00ffff,
+      0 0 10px #00ffff,
+      0 0 20px #00ffff,
+      0 0 40px #00ffff;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.border-neon-white {
+  border-color: #ffffff;
+  box-shadow: 
+      0 0 5px #ffffff,
+      0 0 10px #ffffff;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.border-neon-white-lg {
+  border-color: #ffffff;
+  box-shadow: 
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 40px #ffffff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Neon Text Effects */
+.text-neon-green {
+  color: #39ff14;
+  text-shadow: 
+      0 0 5px #39ff14,
+      0 0 10px #39ff14,
+      0 0 20px #39ff14;
+}
+
+.text-neon-blue {
+  color: #00ffff;
+  text-shadow: 
+      0 0 5px #00ffff,
+      0 0 10px #00ffff,
+      0 0 20px #00ffff;
+}
+
+.text-neon-white {
+  color: #ffffff;
+  text-shadow: 
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff;
+}
+
+/* Custom Scrollbar for WebKit Browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a; 
+  border-radius: 10px;
+  margin: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ffff; /* Neon blue */
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39ff14; /* Neon green */
 }
