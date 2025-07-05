@@ -22,7 +22,7 @@ const Contact = () => {
   
     useEffect(() => {
       const fetchContactInfo = async () => {
-        setContactInfo(await apiHandler.getInfo());
+        setContactInfo(await apiHandler.getContact());
         console.log(contactInfo);
       };
       fetchContactInfo();
