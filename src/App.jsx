@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
+import About from "./components/About";
+import Portfolio from "./components/Portfolio";
+import Projects from "./components/Projects";
+import Blog from "./components/Blog";
+import Contact from "./components/Contact";
+import Info from "./components/Info";
 
 function App() {
     const [count, setCount] = useState(1);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [activeTab, setActiveTab] = useState("about");
+    const [isMobile, setIsMobile] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         if (count < 3) {
@@ -27,27 +36,122 @@ function App() {
         return () => window.removeEventListener("load", handleLoad);
     }, []);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        // Initial check
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case "about":
+                return <About />;
+            case "portfolio":
+                return <Portfolio />;
+            case "projects":
+                return <Projects />;
+            case "blog":
+                return <Blog />;
+            case "contact":
+                return <Contact />;
+            default:
+                return <About />;
+        }
+    };
+
+    const NavTabs = () => (
+        <div className="flex space-x-4 md:space-x-6 text-sm md:text-base font-medium overflow-x-auto pb-2">
+            {["about", "portfolio", "projects", "blog", "contact"].map((tab) => (
+                <button
+                    key={tab}
+                    onClick={() => {
+                        setActiveTab(tab);
+                        setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 py-2 rounded-lg hover:bg-violet-700/20 transition-colors duration-200 capitalize ${
+                        activeTab === tab ? "bg-violet-700/30 text-white" : "text-gray-300"
+                    }`}
+                >
+                    {tab}
+                </button>
+            ))}
+        </div>
+    );
+
     return (
         <div className="bg-gradient-to-tr from-violet-950 via-slate-900 to-blue-900">
-            <div className="bg-slate-950/60 w-full h-[100vh] max-w-[100vw] max-h-[100vh] overflow-hidden">
+            <div className="bg-slate-950/60 w-full min-h-screen max-w-full overflow-x-hidden">
                 {isLoaded ? (
-                    <div>
-                        <div className="max-w-7xl mx-auto">
-                            <div className="m-5 h-full flex justify-between gap-5">
-                                <div className="w-1/3">
-                                    <div className="w-full rounded-2xl border-4 border-neon-blue max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden text-white">
-                                        
-                                    </div>
+                    <div className="max-w-7xl mx-auto px-4">
+                        <div className="py-6">
+                            {/* Mobile menu button */}
+                            {isMobile && (
+                                <div className="flex justify-between items-center mb-4">
+                                    <h1 className="text-white text-xl font-bold">Abdullah Ahmad</h1>
+                                    <button
+                                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                        className="text-white p-2 rounded-lg bg-violet-700/30 hover:bg-violet-700/50"
+                                    >
+                                        <span className="sr-only">Open menu</span>
+                                        <svg
+                                            className="w-6 h-6"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            {mobileMenuOpen ? (
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            ) : (
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                            )}
+                                        </svg>
+                                    </button>
                                 </div>
-                                <div className="w-2/3">
-                                    <div className="w-full rounded-2xl border-4 border-neon-blue max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden text-white">
+                            )}
+
+                            {/* Mobile menu */}
+                            {isMobile && mobileMenuOpen && (
+                                <div className="mb-4">
+                                    <NavTabs />
+                                </div>
+                            )}
+
+                            <div className="flex flex-col md:flex-row md:gap-5">
+                                {/* Left sidebar */}
+                                {(!isMobile || activeTab === "about") && (
+                                    <div className={`${isMobile ? "w-full mb-4" : "w-1/3"} transition-all duration-300`}>
+                                        <div className="w-full rounded-2xl lborder-4 lborder-violet-600 max-h-[calc(100vh-6rem)] overflow-y-auto overflow-x-hidden text-white bg-slate-900/80 p-4">
+                                            <Info />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Main content */}
+                                <div className={`${isMobile ? "w-full" : "w-2/3"} transition-all duration-300`}>
+                                    <div className="w-full rounded-2xl lborder-4 lborder-violet-600 max-h-[calc(100vh-6rem)] overflow-y-auto overflow-x-hidden text-white bg-slate-900/80">
+                                        {/* Desktop Navigation */}
+                                        {!isMobile && (
+                                            <div className="sticky top-0 bg-slate-950/90 p-4 lborder-b lborder-violet-600/30 z-10">
+                                                <NavTabs />
+                                            </div>
+                                        )}
+
+                                        {/* Content area */}
+                                        <div className="p-4">{renderContent()}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center h-full">
+                    <div className="flex flex-col items-center justify-center h-screen">
                         <div className="w-20 h-20 flex items-center justify-center">
                             {[...Array(count)].map((_, index) => (
                                 <div key={index} className="w-32 h-32 flex items-center justify-center animate-bounce">
