@@ -9,7 +9,6 @@ const About = () => {
 	useEffect(() => {
 		const fetchAboutData = async () => {
 			setAboutData(await apiHandler.getAbout());
-			console.log(aboutData);
 		};
 		fetchAboutData();
 	}, []);
