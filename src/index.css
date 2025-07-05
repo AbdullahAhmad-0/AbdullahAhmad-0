@@ -93,3 +93,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #39ff14; /* Neon green */
 }
+
+.gradient-text {
+  background: linear-gradient(to right, #a78bfa, #60a5fa); /* violet-400 to blue-400 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a78bfa; /* fallback color */
+}

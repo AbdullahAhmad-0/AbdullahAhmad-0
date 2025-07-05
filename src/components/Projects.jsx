@@ -127,7 +127,7 @@ const Projects = () => {
 	return (
 		<div>
 			<div className="mb-6">
-				<h2 className="text-2xl font-bold text-violet-400 mb-4">My Projects</h2>
+				<h2 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text mb-4">My Projects</h2>
 				<p className="text-gray-300 mb-4">
 					Explore my recent projects across different domains. Each project represents a unique challenge and solution.
 				</p>

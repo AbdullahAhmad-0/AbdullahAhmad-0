@@ -16,7 +16,7 @@ const About = () => {
 	const renderAboutContent = () => {
 		return (
 			<div>
-				<h3 className="text-xl font-bold text-violet-400 mb-4">{aboutData.about.title}</h3>
+				<h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text  mb-4">{aboutData.about.title}</h3>
 				<div className="space-y-4">
 					{aboutData.about.content.split("\n\n").map((paragraph, index) => (
 						<p key={index} className="text-gray-300">
@@ -31,7 +31,7 @@ const About = () => {
 	const renderSkillsContent = () => {
 		return (
 			<div>
-				<h3 className="text-xl font-bold text-violet-400 mb-4">{aboutData.skills.title}</h3>
+				<h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text  mb-4">{aboutData.skills.title}</h3>
 
 				<div className="mb-8">
 					<h4 className="text-lg font-semibold text-blue-400 mb-3">Technical Skills</h4>
@@ -81,7 +81,7 @@ const About = () => {
 	const renderEducationContent = () => {
 		return (
 			<div>
-				<h3 className="text-xl font-bold text-violet-400 mb-4">{aboutData.education.title}</h3>
+				<h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text  mb-4">{aboutData.education.title}</h3>
 				<div className="space-y-6">
 					{aboutData.education.timeline.map((item, index) => (
 						<div key={index} className="relative pl-8 pb-6 border-l-2 border-violet-700 last:border-0 last:pb-0">
@@ -104,7 +104,7 @@ const About = () => {
 	const renderExperienceContent = () => {
 		return (
 			<div>
-				<h3 className="text-xl font-bold text-violet-400 mb-4">{aboutData.experience.title}</h3>
+				<h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text  mb-4">{aboutData.experience.title}</h3>
 				<div className="space-y-6">
 					{aboutData.experience.timeline.map((item, index) => (
 						<div key={index} className="relative pl-8 pb-6 border-l-2 border-violet-700 last:border-0 last:pb-0">
@@ -135,7 +135,7 @@ const About = () => {
 	const renderCertificatesContent = () => {
 		return (
 			<div>
-				<h3 className="text-xl font-bold text-violet-400 mb-4">{aboutData.certifications.title}</h3>
+				<h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text mb-4">{aboutData.certifications.title}</h3>
 				<div className="space-y-6">
 					{aboutData.certifications.timeline.map((cert, index) => (
 						<div key={index} className="relative pl-8 pb-6 border-l-2 border-violet-700 last:border-0 last:pb-0">
