@@ -17,18 +17,18 @@
 }
 
 .border-neon-blue {
-  border-color: #00ffff;
+  border-color: #7f22fe;
   box-shadow: 
-      0 0 5px #00ffff,
-      0 0 10px #00ffff;
+      0 0 5px #7f22fe,
+      0 0 10px #7f22fe;
 }
 .border-neon-blue-lg {
-  border-color: #00ffff;
+  border-color: #7f22fe;
   box-shadow: 
-      0 0 5px #00ffff,
-      0 0 10px #00ffff,
-      0 0 20px #00ffff,
-      0 0 40px #00ffff;
+      0 0 5px #7f22fe,
+      0 0 10px #7f22fe,
+      0 0 20px #7f22fe,
+      0 0 40px #7f22fe;
 }
 
 .border-neon-white {
@@ -57,11 +57,11 @@
 }
 
 .text-neon-blue {
-  color: #00ffff;
+  color: #7f22fe;
   text-shadow: 
-      0 0 5px #00ffff,
-      0 0 10px #00ffff,
-      0 0 20px #00ffff;
+      0 0 5px #7f22fe,
+      0 0 10px #7f22fe,
+      0 0 20px #7f22fe;
 }
 
 .text-neon-white {
@@ -85,7 +85,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00ffff; /* Neon blue */
+  background: #7f22fe; /* Neon blue */
   border-radius: 10px;
   border: 2px solid #1a1a1a;
 }
