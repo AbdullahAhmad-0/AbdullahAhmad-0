@@ -1,93 +1,25 @@
 import { useState, useEffect } from "react";
+import apiHandler from "../api/api_handler";
 
 const Portfolio = () => {
 	const [activeCategory, setActiveCategory] = useState("all");
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredPortfolio, setFilteredPortfolio] = useState([]);
 	const [selectedLanguages, setSelectedLanguages] = useState([]);
+	const [portfolioData, setPortfolioData] = useState([]);
+  const [categories, setCategories] = useState(["all", "web development", "app development", "software development", "other"]);
 
-	// Sample portfolio data
-	const portfolioData = [
-		{
-			id: 1,
-			title: "E-commerce Platform",
-			description: "A full-featured online shopping platform with user authentication, product catalog, cart, and payment integration.",
-			image: "/api/placeholder/600/400",
-			category: "web development",
-			languages: ["JavaScript", "React", "Node.js", "MongoDB"],
-			link: "https://example.com/ecommerce",
-			readMore: "abcd.com",
-		},
-		{
-			id: 2,
-			title: "Fitness Tracker App",
-			description: "Mobile application for tracking workouts, nutrition, and personal fitness goals with analytics dashboard.",
-			image: "/api/placeholder/600/400",
-			category: "app development",
-			languages: ["React Native", "Firebase", "Redux"],
-			link: "https://example.com/fitness-app",
-		},
-		{
-			id: 3,
-			title: "Inventory Management System",
-			description: "Desktop software for small businesses to manage inventory, sales, and generate reports.",
-			image: "/api/placeholder/600/400",
-			category: "software development",
-			languages: ["Python", "SQLite", "PyQt"],
-			link: "",
-			readMore: "abcd.com",
-		},
-		{
-			id: 4,
-			title: "AI-Driven Chatbot",
-			description: "Intelligent customer service chatbot trained on company-specific data to handle customer inquiries.",
-			image: "/api/placeholder/600/400",
-			category: "other",
-			languages: ["Python", "TensorFlow", "NLP"],
-			link: "https://example.com/chatbot",
-			readMore: "abcd.com",
-		},
-		{
-			id: 5,
-			title: "Portfolio Website Template",
-			description: "Responsive and customizable portfolio website template for developers and designers.",
-			image: "/api/placeholder/600/400",
-			category: "web development",
-			languages: ["HTML", "CSS", "JavaScript"],
-			link: "https://example.com/portfolio-template",
-		},
-		{
-			id: 6,
-			title: "Task Management Mobile App",
-			description: "Cross-platform mobile application for managing tasks, projects, and team collaboration.",
-			image: "/api/placeholder/600/400",
-			category: "app development",
-			languages: ["Flutter", "Dart", "Firebase"],
-			link: "https://example.com/task-app",
-			readMore: "abcd.com",
-		},
-		{
-			id: 7,
-			title: "Data Visualization Dashboard",
-			description: "Interactive dashboard for visualizing complex datasets with filtering and export capabilities.",
-			image: "/api/placeholder/600/400",
-			category: "web development",
-			languages: ["React", "D3.js", "Node.js"],
-			link: "",
-			readMore: "abcd.com",
-		},
-		{
-			id: 8,
-			title: "Point of Sale System",
-			description: "Comprehensive POS system for retail businesses with inventory tracking and sales analytics.",
-			image: "/api/placeholder/600/400",
-			category: "software development",
-			languages: ["C#", ".NET", "SQL Server"],
-			link: "https://example.com/pos-system",
-		},
-	];
+	useEffect(() => {
+		const fetchPortfolioData = async () => {
+			setPortfolioData(await apiHandler.getPortfolio());
+		};
+		fetchPortfolioData();
+	}, []);
 
-	const categories = ["all", "web development", "app development", "software development", "other"];
+	useEffect(() => {
+    console.log(portfolioData)
+    setCategories(["all", ...new Set(portfolioData.map(item => item.category))]);
+	}, [portfolioData]);
 
 	// Extract all unique languages from portfolio data
 	const allLanguages = [...new Set(portfolioData.flatMap((item) => item.languages))].sort();
@@ -118,7 +50,7 @@ const Portfolio = () => {
 		}
 
 		setFilteredPortfolio(filtered);
-	}, [activeCategory, searchTerm, selectedLanguages]);
+	}, [activeCategory, searchTerm, selectedLanguages, portfolioData]);
 
 	const toggleLanguage = (language) => {
 		setSelectedLanguages((prev) => (prev.includes(language) ? prev.filter((lang) => lang !== language) : [...prev, language]));
@@ -127,7 +59,9 @@ const Portfolio = () => {
 	return (
 		<div>
 			<div className="mb-6">
-				<h2 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text mb-4">My Portfolio</h2>
+				<h2 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent gradient-text mb-4">
+					My Portfolio
+				</h2>
 				<p className="text-gray-300 mb-4">
 					Explore my recent projects across different domains. Each project represents a unique challenge and solution.
 				</p>
