@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import apiHandler from "../api/api_handler";
+import { API_BASE_URL } from "../config";
 
 const Projects = () => {
 	const [activeCategory, setActiveCategory] = useState("all");
@@ -134,7 +135,7 @@ const Projects = () => {
 								className="bg-slate-800/50 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition-all duration-300"
 							>
 								<div className="relative group">
-									<img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+									<img src={`${API_BASE_URL}${item.image}`} alt={item.title} className="w-full h-48 object-cover" />
 									<div className="absolute inset-0 bg-violet-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
 										{item.link && (
 											<a
