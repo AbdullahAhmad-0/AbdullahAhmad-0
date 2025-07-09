@@ -17,17 +17,21 @@ const Contact = () => {
     error: null
   });
 
-    const [contactInfo, setContactInfo] = useState(CONTACT_TEMPLATE);
-    const [availableIcons, setAvailableIcons] = useState([]);
+  const [contactInfo, setContactInfo] = useState(CONTACT_TEMPLATE);
+  const [availableIcons, setAvailableIcons] = useState([]);
   
-    useEffect(() => {
-      const fetchContactInfo = async () => {
-        setContactInfo(await apiHandler.getContact());
-        console.log(contactInfo);
-      };
-      fetchContactInfo();
-      loadAvailableIcons();
-    }, []);
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const info = await apiHandler.getContact();
+        setContactInfo(info);
+      } catch (error) {
+        console.error("Failed to load contact info:", error);
+      }
+    };
+    fetchContactInfo();
+    loadAvailableIcons();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,61 +41,71 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus({ submitted: false, submitting: true, error: null });
     
-    // Simulate form submission
-    setTimeout(() => {
-      if (formData.email && formData.name && formData.message) {
-        setFormStatus({ submitted: true, submitting: false, error: null });
-        // Reset form after successful submission
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        setFormStatus({ 
-          submitted: false, 
-          submitting: false, 
-          error: "Please fill out all required fields." 
-        });
+    try {
+      // Validate required fields
+      if (!formData.email || !formData.name || !formData.message) {
+        throw new Error("Please fill out all required fields.");
       }
-    }, 1500);
+
+      // Send message via API
+      await apiHandler.sendMessage({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || "No Subject",
+        message: formData.message,
+      });
+
+      setFormStatus({ submitted: true, submitting: false, error: null });
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      setFormStatus({ 
+        submitted: false, 
+        submitting: false, 
+        error: error.message || "Failed to send message. Please try again." 
+      });
+    }
   };
 
-	const loadAvailableIcons = async () => {
-		try {
-			const icons = await apiHandler.getIcon();
-			setAvailableIcons(icons || []);
-		} catch (error) {
-			console.error("Failed to load icons:", error);
-			setAvailableIcons([]);
-		}
-	};
+  const loadAvailableIcons = async () => {
+    try {
+      const icons = await apiHandler.getIcon();
+      setAvailableIcons(icons || []);
+    } catch (error) {
+      console.error("Failed to load icons:", error);
+      setAvailableIcons([]);
+    }
+  };
 
-	const SocialIcon = ({name}) => {
-		// First check custom icons
-		const customIcon = availableIcons.find((icon) => icon.name.toLowerCase() === name.toLowerCase());
-		if (customIcon) {
-			return <div dangerouslySetInnerHTML={{ __html: customIcon.svg }} className="w-5 h-5" />;
-		}
+  const SocialIcon = ({name}) => {
+    // First check custom icons
+    const customIcon = availableIcons.find((icon) => icon.name.toLowerCase() === name.toLowerCase());
+    if (customIcon) {
+      return <div dangerouslySetInnerHTML={{ __html: customIcon.svg }} className="w-5 h-5" />;
+    }
 
-		// Then check default icons
-		const defaultIcon = defaultIconMap[name.toLowerCase()];
-		if (defaultIcon) {
-			return defaultIcon;
-		}
+    // Then check default icons
+    const defaultIcon = defaultIconMap[name.toLowerCase()];
+    if (defaultIcon) {
+      return defaultIcon;
+    }
 
-		// Fallback to generic icon
-		return (
-			<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-			</svg>
-		);
-	};
+    // Fallback to generic icon
+    return (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+      </svg>
+    );
+  };
 
   return (
     <div className="py-4">
@@ -236,7 +250,7 @@ const Contact = () => {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span>Thank you! Your message has been sent.</span>
+                <span>Thank you! Your message has been sent successfully.</span>
               </div>
             </div>
           ) : null}
@@ -326,7 +340,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={formStatus.submitting}
-              className="w-full bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-300 flex justify-center items-center"
+              className="w-full bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-lg transition-colors duration-300 flex justify-center items-center"
             >
               {formStatus.submitting ? (
                 <>
