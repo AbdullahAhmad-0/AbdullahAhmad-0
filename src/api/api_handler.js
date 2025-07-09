@@ -54,6 +54,30 @@ const apiHandler = {
 	async getIcon() {
 		return this.request("/icon");
 	},
+
+	blog: {
+		// Get all blog posts
+		async getAll() {
+			return apiHandler.request("/blog");
+		},
+
+		// Get a single blog post by slug
+		async getBySlug(slug) {
+			return apiHandler.request(`/blog/${slug}`);
+		},
+
+		// Get published blog posts (public endpoint)
+		async getPublished() {
+			return apiHandler.request("/blog/published");
+		},
+	},
+
+	async sendMessage(data) {
+		return this.request("/msg/send", {
+			method: "POST",
+			body: data,
+		});
+	},
 };
 
 export default apiHandler;
