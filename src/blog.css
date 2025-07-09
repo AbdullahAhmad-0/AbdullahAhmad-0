@@ -1,0 +1,143 @@
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4,
+.blog-post h5,
+.blog-post h6 {
+  color: #ffffff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.blog-post h1 {
+  font-size: 2.5rem;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3); /* violet-500 */
+  padding-bottom: 0.5rem;
+}
+
+.blog-post h2 {
+  font-size: 2rem;
+  border-left: 4px solid rgba(139, 92, 246, 0.5);
+  padding-left: 0.5rem;
+}
+
+.blog-post h3 {
+  font-size: 1.5rem;
+  color: #c4b5fd; /* violet-300 */
+}
+
+.blog-post h4 {
+  font-size: 1.25rem;
+  color: #a5b4fc; /* indigo-300 */
+}
+
+.blog-post h5 {
+  font-size: 1.125rem;
+  color: #93c5fd; /* blue-300 */
+}
+
+.blog-post h6 {
+  font-size: 1rem;
+  color: #bfdbfe; /* light blue-200 */
+}
+
+/* Paragraphs */
+.blog-post p {
+  color: #d1d5db; /* gray-300 */
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+/* Links */
+.blog-post a {
+  color: #8b5cf6; /* violet-500 */
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.blog-post a:hover {
+  color: #a78bfa; /* violet-400 */
+}
+
+/* Lists */
+.blog-post ul,
+.blog-post ol {
+  padding-left: 2rem;
+  margin-bottom: 1.25rem;
+  color: #d1d5db;
+}
+
+.blog-post ul li::marker {
+  color: #8b5cf6;
+}
+
+.blog-post ol li::marker {
+  color: #93c5fd;
+}
+
+/* Blockquote */
+.blog-post blockquote {
+  border-left: 4px solid rgba(139, 92, 246, 0.5);
+  padding-left: 1rem;
+  color: #d8b4fe;
+  font-style: italic;
+  background-color: rgba(139, 92, 246, 0.05);
+  margin: 1.5rem 0;
+}
+
+/* Code Block */
+.blog-post pre,
+.blog-post code {
+  font-family: 'Fira Code', monospace;
+  background-color: rgba(30, 41, 59, 0.9); /* slate-800 */
+  color: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  overflow-x: auto;
+}
+
+.blog-post pre {
+  margin: 1.5rem 0;
+}
+
+.blog-post code {
+  background-color: rgba(71, 85, 105, 0.6); /* slate-700 */
+}
+
+/* Images */
+.blog-post img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Videos */
+.blog-post video {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+.blog-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.blog-post table th,
+.blog-post table td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  text-align: left;
+  color: #e5e7eb; /* gray-200 */
+}
+
+.blog-post table th {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+}
