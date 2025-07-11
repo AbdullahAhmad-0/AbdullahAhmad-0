@@ -1,3 +1,4 @@
+/* Headings */
 .blog-post h1,
 .blog-post h2,
 .blog-post h3,
@@ -77,6 +78,20 @@
   color: #93c5fd;
 }
 
+/* Nested Lists */
+.blog-post li {
+  margin-bottom: 0.5rem;
+}
+.blog-post .ql-indent-1 {
+  margin-left: 1.5rem;
+}
+.blog-post .ql-indent-2 {
+  margin-left: 3rem;
+}
+.blog-post .ql-indent-3 {
+  margin-left: 4.5rem;
+}
+
 /* Blockquote */
 .blog-post blockquote {
   border-left: 4px solid rgba(139, 92, 246, 0.5);
@@ -87,24 +102,40 @@
   margin: 1.5rem 0;
 }
 
-/* Code Block */
+/* Code Blocks & Inline Code */
 .blog-post pre,
 .blog-post code {
   font-family: 'Fira Code', monospace;
   background-color: rgba(30, 41, 59, 0.9); /* slate-800 */
   color: #f8fafc;
-  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   font-size: 0.95rem;
   overflow-x: auto;
 }
 
 .blog-post pre {
+  padding: 1rem;
   margin: 1.5rem 0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .blog-post code {
   background-color: rgba(71, 85, 105, 0.6); /* slate-700 */
+  padding: 0.2rem 0.5rem;
+}
+
+/* Quill code blocks */
+.blog-post .ql-code-block-container {
+  margin: 1.5rem 0;
+}
+.blog-post .ql-code-block {
+  white-space: pre;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(30, 41, 59, 0.9);
+  color: #f8fafc;
+  overflow-x: auto;
 }
 
 /* Images */
